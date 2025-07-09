@@ -1,0 +1,8 @@
+testcases\TestBase.class
+testcases\TC03_RegisterAccountInformationPage.class
+listeners\Listener.class
+retryTest\MyRetry.class
+testcases\TC01_HomePage.class
+testcases\TC05_DeleteAccountPage.class
+testcases\TC02_SignUpOrLoginPage.class
+testcases\TC04_AccountCreatedPage.class

@@ -1,0 +1,12 @@
+actions\CustomeDecorator.class
+pages\P05_DeleteAccountPage.class
+pages\P02_SignUpOrLoginPage.class
+pages\P01_HomePage.class
+pojo\CredientialsData.class
+pages\P03_RegisterAccountInformationPage.class
+pages\PageBase.class
+drivers\DriverFactory.class
+util\Utility.class
+drivers\DriverHolder.class
+pages\P04_AccountCreatedPage.class
+common\MyScreenRecorder.class

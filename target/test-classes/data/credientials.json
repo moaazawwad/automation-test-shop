@@ -1,0 +1,16 @@
+{
+  "login":[
+    {
+      "username": "standard_user",
+      "password": "fdfdfdfd"
+    },
+    {
+      "username": "kjkjk",
+      "password": "secret_sauce"
+    },
+    {
+      "username": "ghghggh",
+      "password": "hjjhjjhjh"
+    }
+  ]
+}

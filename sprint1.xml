@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Full Test Suite" parallel="false">
+    <parameter name="browsername" value="chrome" />
+
+    <test name="TC01 - Home Page">
+        <classes>
+            <class name="testcases.TC01_HomePage" />
+        </classes>
+    </test>
+
+    <test name="TC02 - Login Page">
+        <classes>
+            <class name="testcases.TC02_LoginPage" />
+        </classes>
+    </test>
+
+    <test name="TC03 - Signup Page">
+        <classes>
+            <class name="testcases.TC03_SignupPage" />
+        </classes>
+    </test>
+
+    <test name="TC04 - Cart Page">
+        <classes>
+            <class name="testcases.TC04_CartPage" />
+        </classes>
+    </test>
+
+</suite>
