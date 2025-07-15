@@ -12,6 +12,7 @@ import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import static drivers.DriverHolder.getDriver;
 import static drivers.DriverHolder.setDriver;
@@ -42,10 +43,12 @@ public class TestBase {
         PROJECT_URL = prop.getProperty("url");
     }
 
-    @Parameters("browsername")
+    @Parameters({"browsername"})
+
     @BeforeTest
     public void OpenBrower(@Optional String browsername) throws AWTException, InterruptedException {
-        setDriver(DriverFactory.getNewInstance(""));
+        setDriver(DriverFactory.getNewInstance(browsername));
+        getDriver().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         getDriver().get(PROJECT_URL);
         // open browser network
 //        openBrowserNetworkTab();

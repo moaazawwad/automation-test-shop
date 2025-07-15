@@ -23,7 +23,7 @@
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
 - ✅ **End-to-End user journey**: from dynamic user registration to successful order confirmation and payment validation  
 - 🔐 Automated login and logout verification  
@@ -35,7 +35,7 @@
 
 ---
 
-## ⚙️ Setup
+##  Setup
 
 > This project depends on a **local React frontend**. Make sure it’s running before executing automation tests.
 
@@ -58,7 +58,7 @@ mvn clean verify
 
 
 
-## ✅ Sample Test Scenarios
+##  Sample Test Scenarios
 
 | # | Scenario | Description |
 |---|----------|-------------|
@@ -70,12 +70,12 @@ mvn clean verify
 
 ---
 
-## 🤝 Contribute
+##  Contribute
 
 Have improvements or ideas? Fork the repo, open issues, or submit a PR!
 
 ---
 
-## 📄 License
+##  License
 
 MIT License © 2025 Moaaz Awwad

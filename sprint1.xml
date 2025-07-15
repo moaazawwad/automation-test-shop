@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Full Test Suite" parallel="false">
-    <parameter name="browsername" value="chrome" />
+    <parameter name="browsername" value="chrome-slow"/>
 
     <test name="TC01 - Home Page">
         <classes>

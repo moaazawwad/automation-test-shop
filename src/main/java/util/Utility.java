@@ -211,23 +211,6 @@ public static void generateshuffleRandomNumber(int max) {
     // Print the shuffled list (it will contain random numbers less than the random number)
      // System.out.println("Random Numbers Less Than " + randomNumber + ": " + availableNumbers);
 }
-//    public static int generateRandomNumberBetween1And8() {
-//        // nextInt(3) generates numbers from 0 to 2 (inclusive).
-//        // Adding 1 shifts the range to 1 to 3 (inclusive).
-//        return random.nextInt(8) + 1;
-//    }
-
-//    public static int generateRandomNumberBetween1And2() {
-//        // nextInt(3) generates numbers from 0 to 2 (inclusive).
-//        // Adding 1 shifts the range to 1 to 3 (inclusive).
-//        return random.nextInt(2) + 1;
-//    }
-
-//    public static int generateRandomNumberBetween1And5() {
-//        // nextInt(3) generates numbers from 0 to 2 (inclusive).
-//        // Adding 1 shifts the range to 1 to 3 (inclusive).
-//        return random.nextInt(5) + 1;
-//    }
 
     //generate random city
 public static String generateRandomCity() {
@@ -291,78 +274,7 @@ public static String generateRandomCity() {
         }
     }
 
-    //
 
-
-
-
-//    /*
-//    // generate random firstname
-//    private static final String CHAR_LIST = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-//    private static final int RANDOM_STRING_LENGTH = 10;
-//
-//    public static String generateRandomFirstName() {
-//        StringBuilder randStr = new StringBuilder();
-//        Random rand = new Random();
-//
-//        for (int i = 0; i < RANDOM_STRING_LENGTH; i++) {
-//            int index = rand.nextInt(CHAR_LIST.length());
-//            char c = CHAR_LIST.charAt(index);
-//            randStr.append(c);
-//        }
-//
-//        return randStr.toString();
-//    }
-//
-//    //generate random mobile number
-//    private static final String COUNTRY_CODE = "+966"; // Replace with the desired country code
-//    private static final String[] PREFIXES = { "50", "53", "54", "55", "56", "59" };
-//
-//    public static String generateRandomPhoneNumber() {
-//        Random rand = new Random();
-//
-//        // Choose a random prefix
-//        String prefix = PREFIXES[rand.nextInt(PREFIXES.length)];
-//
-//        // Generate 7 random digits for the remaining part of the number
-//        String remainingDigits = String.format("%07d", rand.nextInt(10000000));
-//
-//        // Combine country code, prefix, and remaining digits
-//        String phoneNumber = COUNTRY_CODE + prefix + remainingDigits;
-//
-//        return phoneNumber;
-//    }
-//
-/// /    public static void main(String[] args) {
-/// /        String randomPhoneNumber = generateRandomPhoneNumber();
-/// /        System.out.println("Random Phone Number: " + randomPhoneNumber);
-/// /    }
-///
-/// @return
-//
-//    //Generate LastNAme
-//    private static final String charList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-//    private static final int randomStringLingth = 10;
-//
-//    // Method to generate a random last name
-//    public static String generateRandomLastName() {
-//        StringBuilder randStr = new StringBuilder();
-//        Random rand = new Random();
-//
-//        for (int i = 0; i < randomStringLingth; i++) {
-//            int index = rand.nextInt(charList.length());
-//            char c = CHAR_LIST.charAt(index);
-//            randStr.append(c);
-//        }
-//
-//        return randStr.toString();
-//    }
-//     */
-
-//public static int generateRandomNumber(int max) {
-//    Random rand = new Random();
-//    return rand.nextInt(max) + 1; // Generate a random number between 1 and max (inclusive)
-//}
 
     // Method to generate unique random numbers and save them in an ArrayList
 

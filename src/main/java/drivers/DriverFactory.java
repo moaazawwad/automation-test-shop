@@ -43,6 +43,43 @@ public class DriverFactory {
                 return new ChromeDriver(chromeOptions);
             case "firefox":
                 return new FirefoxDriver();
+            case "chrome-mobile":
+                chromeOptions = new ChromeOptions();
+
+                Map<String, Object> deviceMetrics = new HashMap<>();
+                deviceMetrics.put("width", 375);
+                deviceMetrics.put("height", 812);
+                deviceMetrics.put("pixelRatio", 3.0);
+
+                Map<String, Object> mobileEmulation = new HashMap<>();
+                mobileEmulation.put("deviceMetrics", deviceMetrics);
+                mobileEmulation.put("userAgent", "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)");
+
+                chromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
+
+                chromeOptions.addArguments("--disable-notifications");
+                chromeOptions.addArguments("--remote-allow-origins=*");
+
+                return new ChromeDriver(chromeOptions);
+            case "chrome-slow":
+                chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--disable-notifications");
+                chromeOptions.addArguments("--remote-allow-origins=*");
+
+                ChromeDriver slowDriver = new ChromeDriver(chromeOptions);
+
+                // ✅ تفعيل Slow Network باستخدام CDP
+                Map<String, Object> networkConditions = new HashMap<>();
+                networkConditions.put("offline", false);
+                networkConditions.put("latency", 300); // 300ms delay
+                networkConditions.put("downloadThroughput", 500 * 1024 / 8); // 500 kbps
+                networkConditions.put("uploadThroughput", 500 * 1024 / 8);
+
+                slowDriver.executeCdpCommand("Network.enable", new HashMap<>());
+                slowDriver.executeCdpCommand("Network.emulateNetworkConditions", networkConditions);
+
+                System.out.println("🌐 Running Chrome with Slow Network emulation (CDP)");
+                return slowDriver;
             case "firefox-headless":
                 FirefoxBinary firefoxBinary = new FirefoxBinary();
                 firefoxBinary.addCommandLineOptions("--headless");

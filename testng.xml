@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="test-shop" preserve-order="true">
+<suite name="test-shop" >
     <listeners>
         <listener class-name="listeners.Listener"/>
     </listeners>
