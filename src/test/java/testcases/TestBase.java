@@ -11,6 +11,7 @@ import org.testng.annotations.*;
 import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -48,10 +49,10 @@ public class TestBase {
     @BeforeTest
     public void OpenBrower(@Optional String browsername) throws AWTException, InterruptedException {
         setDriver(DriverFactory.getNewInstance(browsername));
-        getDriver().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         getDriver().get(PROJECT_URL);
         // open browser network
-//        openBrowserNetworkTab();
+         openBrowserNetworkTab();
     }
 
     @AfterTest

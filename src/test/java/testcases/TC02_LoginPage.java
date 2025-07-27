@@ -1,17 +1,24 @@
 package testcases;
 
+import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.P01_HomePage;
 import pages.P02_LoginPage;
 
+import java.io.IOException;
+
 import static drivers.DriverHolder.getDriver;
+import static util.Utility.getSingleJsonData;
 
 public class TC02_LoginPage extends TestBase{
-    String email = "test@example.com";
-    String password = "Test123!";
+  String credentials = "D:\\iqra\\automation\\tasks\\test-shop-automation\\src\\test\\resources\\data\\credentials.json";
+  String email = getSingleJsonData(credentials, "email").toString();
+  String password = getSingleJsonData(credentials, "password").toString();
+    public TC02_LoginPage() throws IOException, ParseException {
+    }
 
-  /**
+    /**
    * ✅ Test: Login with valid credentials and verify successful redirection to home page
    */
   @Test(priority = 1, description = "Login with valid email and password, and verify successful login")

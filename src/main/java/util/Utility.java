@@ -2,6 +2,7 @@ package util;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -66,14 +67,14 @@ public class Utility {
         return COUNTRIES[random.nextInt(COUNTRIES.length)];
     }
     //parse data
-    public static String getSingleJsonData(String jsonFilePath, String jsonField) throws IOException, ParseException {
+    public static Object getSingleJsonData(String jsonFilePath, String jsonField) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
 
         FileReader fileReader = new FileReader(jsonFilePath);
         Object obj = jsonParser.parse(fileReader);
 
         JSONObject jsonObject = (JSONObject) obj;
-        return jsonObject.get(jsonField).toString();
+        return jsonObject.get(jsonField);
     }
 
     //generate Random name
@@ -229,12 +230,11 @@ public static String generateRandomCity() {
         return streetNumber + " " + streetName + " " + streetType + ", " + city + ", " + state + " " + zipCode;
     }
 
-    //generateRandomPostalCode
-    public static int generateRandomPostalCode() {
+    public static String generateRandomPostalCode() {
         Random random = new Random();
-        return random.nextInt(999999) + 1; // Generate a number between 1 and 999999
+        int postalCode = random.nextInt(999999) + 1; // Generate number between 1 and 999999
+        return String.format("%06d", postalCode); // Returns a 6-digit string with leading zeros if needed
     }
-
     // openBrowserNetworkTab
     public static void openBrowserNetworkTab() throws AWTException {
         // Create Robot instance
@@ -305,4 +305,50 @@ public static ArrayList<Integer> generateUniqueRandomNumbers(int max, int count)
 
         return uniqueNumbersList;
     }
+
+    public static String getRandomItemFromJsonArray(JSONArray jsonArray) {
+        if (jsonArray == null || jsonArray.isEmpty()) {
+            throw new IllegalArgumentException("JSON array is empty or null");
+        }
+
+        int randomIndex = new Random().nextInt(jsonArray.size());
+        return jsonArray.get(randomIndex).toString();
+    }
+
+
+    public static String generateStrongPassword(int length) {
+        if (length < 8) {
+            throw new IllegalArgumentException("Password length must be at least 8 characters.");
+        }
+
+        String lower = "abcdefghijklmnopqrstuvwxyz";
+        String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String digits = "0123456789";
+        String symbols = "!#*%";
+
+        String allCharacters = lower + upper + digits + symbols;
+        StringBuilder password = new StringBuilder();
+
+        // Ensure at least one of each type
+        password.append(lower.charAt(random.nextInt(lower.length())));
+        password.append(upper.charAt(random.nextInt(upper.length())));
+        password.append(digits.charAt(random.nextInt(digits.length())));
+        password.append(symbols.charAt(random.nextInt(symbols.length())));
+
+        // Fill the rest of the password
+        for (int i = 4; i < length; i++) {
+            password.append(allCharacters.charAt(random.nextInt(allCharacters.length())));
+        }
+
+        // Shuffle to randomize order
+        List<Character> passwordChars = password.chars()
+                .mapToObj(c -> (char) c)
+                .collect(Collectors.toList());
+        Collections.shuffle(passwordChars);
+
+        return passwordChars.stream()
+                .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
+                .toString();
+    }
+
 }

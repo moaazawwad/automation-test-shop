@@ -16,14 +16,13 @@ public class TC03_SignupPage extends TestBase {
     String lastName = generateRandomName(4);
     String company = generateRandomName(4);
     public static String email = generateRandomEmail();
-    public static String password = "*Abcd12345";
+    public static String password = generateStrongPassword(8);
 
     /**
      * ✅ Test: Register a new user, login with same credentials, and verify username is displayed.
      */
     @Test(priority = 1, description = "Signup with valid data, then login and verify username is displayed")
     public void verifySignupAndLoginFlowWithValidData() throws InterruptedException {
-
 
         P01_HomePage homePage = new P01_HomePage(getDriver());
         P02_LoginPage loginPage = new P02_LoginPage(getDriver());

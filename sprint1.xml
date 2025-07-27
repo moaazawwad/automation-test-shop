@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Full Test Suite" parallel="false">
-    <parameter name="browsername" value="chrome-slow"/>
+    <parameter name="browsername" value="chrome"/>
 
     <test name="TC01 - Home Page">
         <classes>
             <class name="testcases.TC01_HomePage" />
         </classes>
-    </test>
+     </test>
 
     <test name="TC02 - Login Page">
         <classes>

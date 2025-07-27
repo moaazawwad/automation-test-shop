@@ -88,6 +88,7 @@ public class DriverFactory {
                 firefoxOptions.setBinary(firefoxBinary);
                 return new FirefoxDriver(firefoxOptions);
             case "edge":
+                System.setProperty("webdriver.edge.driver", "C:\\Users\\moaaz\\Downloads\\edgedriver_win32\\msedgedriver.exe");
                 return new EdgeDriver();
             default:
                 chromeOptions = new ChromeOptions();

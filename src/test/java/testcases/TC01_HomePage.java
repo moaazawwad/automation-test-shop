@@ -1,14 +1,19 @@
 package testcases;
 
 import io.qameta.allure.*;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.P01_HomePage;
 import pages.P07_WishlistPage;
 
+import java.io.IOException;
 import java.util.List;
 
 import static drivers.DriverHolder.getDriver;
+import static util.Utility.getRandomItemFromJsonArray;
+import static util.Utility.getSingleJsonData;
 
 @Epic("Home Page Functionalities")
 @Story("User interactions from the home page")
@@ -31,14 +36,16 @@ public class TC01_HomePage extends TestBase {
      * ✅ Test #4: Search for product (e.g., Nike) and verify the result appears.
      */
     @Test(priority = 2, description = "Search for 'nike' and verify results contain expected keyword")
-    public void verifySearchFunctionalityDisplaysExpectedResult() throws InterruptedException {
+    public void verifySearchFunctionalityDisplaysExpectedResult() throws InterruptedException, IOException, ParseException {
 
+        Object result = getSingleJsonData("D:\\iqra\\automation\\tasks\\test-shop-automation\\src\\test\\resources\\data\\products.json", "products");
+        JSONArray productsArray = (JSONArray) result;  // ✅ cast to JSONArray
 
+       String randomProduct = getRandomItemFromJsonArray(productsArray);
         P01_HomePage homePage = new P01_HomePage(getDriver());
+        homePage.enterSearchInput(randomProduct);
 
-        homePage.enterSearchInput("nike");
-
-        Assert.assertTrue(homePage.isSearchResultContains("nike"),
+        Assert.assertTrue(homePage.isSearchResultContains(randomProduct),
                 "❌ Search result does not contain expected text 'nike'.");
     }
     /**

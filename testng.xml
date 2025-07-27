@@ -5,7 +5,6 @@
         <listener class-name="listeners.Listener"/>
     </listeners>
 
-    <parameter name="browsername" value="" />
 <suite-files>
     <suite-file path="sprint1.xml"/>
 </suite-files>
