@@ -6,6 +6,7 @@ import com.github.javafaker.Faker;
 import common.MyScreenRecorder;
 import drivers.DriverFactory;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 
 import java.awt.*;
@@ -48,6 +49,7 @@ public class TestBase {
 
     @BeforeTest
     public void OpenBrower(@Optional String browsername) throws AWTException, InterruptedException {
+//      Thread.sleep(500);
         setDriver(DriverFactory.getNewInstance(browsername));
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         getDriver().get(PROJECT_URL);
@@ -56,8 +58,15 @@ public class TestBase {
     }
 
     @AfterTest
-    public void TearDown() {
-        quitBrowser(getDriver());
+    public void tearDown() {
+        try {
+            WebDriver d = drivers.DriverHolder.getDriver();
+            d.quit();
+        } catch (IllegalStateException ignore) {
+            // no driver for this thread
+        } finally {
+            drivers.DriverHolder.unload(); // دي اللي كانت ناقصة
+        }
     }
 
     @AfterSuite

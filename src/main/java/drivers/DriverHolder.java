@@ -2,15 +2,24 @@ package drivers;
 
 import org.openqa.selenium.WebDriver;
 
-public class DriverHolder {
-    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+public final class DriverHolder {
+    private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
 
-    public static synchronized WebDriver getDriver() {
-        return driver.get();
+    private DriverHolder() {}
+
+    public static WebDriver getDriver() {
+        WebDriver d = DRIVER.get();
+        if (d == null) {
+            throw new IllegalStateException("WebDriver not set for current thread. Did you call setDriver() in @BeforeMethod?");
+        }
+        return d;
     }
 
     public static void setDriver(WebDriver driver) {
-        DriverHolder.driver.set(driver);
+        DRIVER.set(driver); // ThreadLocal كافي، لا تحتاج synchronized
     }
 
+    public static void unload() {
+        DRIVER.remove();
+    }
 }
