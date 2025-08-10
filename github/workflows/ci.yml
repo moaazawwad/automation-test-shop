@@ -1,0 +1,88 @@
+name: Selenium CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [ firefox-headless, chrome-headless ]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17 (runtime override)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Cache Maven repo
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: m2-${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
+          restore-keys: m2-${{ runner.os }}-
+
+      # ---- Browsers (نثبّت المتصفح المطلوب للماتريكس) ----
+      - name: Install Firefox
+        if: matrix.browser == 'firefox-headless'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y firefox
+
+      - name: Install Google Chrome + Chromedriver
+        if: matrix.browser == 'chrome-headless'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable || {
+            wget -qO- https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+            echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | \
+            sudo tee /etc/apt/sources.list.d/google-chrome.list
+            sudo apt-get update && sudo apt-get install -y google-chrome-stable
+          }
+      - name: Setup Chromedriver (for Chrome)
+        if: matrix.browser == 'chrome-headless'
+        uses: nanasess/setup-chromedriver@v2
+
+      # ---- Build & Test ----
+      - name: Build & run tests
+        run: |
+          mvn -B --no-transfer-progress \
+            -Dmaven.compiler.source=17 -Dmaven.compiler.target=17 -Djava.version=17 \
+            clean verify -Dbrowsername=${{ matrix.browser }}
+
+      # ---- Artifacts (تقارير واي لقطات/نتائج) ----
+      - name: Upload JUnit reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports-${{ matrix.browser }}
+          path: '**/target/surefire-reports/*.xml'
+
+      - name: Upload Allure results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results-${{ matrix.browser }}
+          path: |
+            **/target/allure-results/**
+            allure-results/**
+
+      - name: Upload screenshots & logs (if any)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: runs-assets-${{ matrix.browser }}
+          path: |
+            **/target/screenshots/**
+            **/test_logs.log
+            **/logs/**
