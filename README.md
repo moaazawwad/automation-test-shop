@@ -46,7 +46,12 @@ npm run dev
 
 It should be available at: `http://localhost:5173/`
 
-### 2. Run the Automation Tests
+
+### Local Testing Execution Example
+
+![Local Testing Execution Example](sequential_execution.gif)
+
+###  Run the Automation Tests
 
 ```bash
 cd test-shop
