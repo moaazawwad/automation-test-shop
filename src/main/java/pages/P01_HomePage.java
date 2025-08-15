@@ -18,7 +18,7 @@ public class P01_HomePage extends PageBase {
         super(driver);
     }
 
-    // Locators  test githuv action
+    // Locators
     private final By loginButton = By.xpath("//button[@data-testid='login-link']");
     private final By logoutButton = By.xpath("//button[@data-testid='logout-button']");
     private final By searchInput = By.xpath("//input[@data-testid='search-input']");
