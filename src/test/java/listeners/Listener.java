@@ -12,7 +12,6 @@ public class Listener implements ITestListener {
 
     @Override
     public void onStart(ITestContext context) {
-        // لو حابة تكمّلي تسجيل الشاشة تمام، ما فيش داعي نعدّله هنا
         // MyScreenRecorder.startRecording(context.getName());
     }
 
@@ -38,13 +37,12 @@ public class Listener implements ITestListener {
 
     private void snap(ITestResult result, String status) {
         try {
-            WebDriver driver = getDriver(); // ❗ نفس درايفر التيست الحالية
+            WebDriver driver = getDriver();
             String name = result.getTestClass().getRealClass().getSimpleName()
                     + "_" + result.getMethod().getMethodName()
                     + "_" + status;
             PageBase.captureScreenshot(driver, name);
         } catch (Throwable t) {
-            // تجاهل أي خطأ في الالتقاط حتى لا يكسر الرن
         }
     }
 }
