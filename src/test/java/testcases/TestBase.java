@@ -63,6 +63,7 @@ public class TestBase {
             // no driver for this thread
         } finally {
             drivers.DriverHolder.unload();
+        }
     }
 
     @AfterSuite
