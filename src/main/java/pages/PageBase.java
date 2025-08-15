@@ -24,14 +24,13 @@ public class PageBase {
 
         this.driver=driver;
     }
+
     public static void hoverWebElement(WebDriver driver, WebElement element) {
         //Creating object of an Actions class
         Actions action = new Actions(getDriver());
-
-//Performing the mouse hover action on the target element.
         action.moveToElement(element).perform();
     }
-    //Waits
+
     public static void explicitWait(WebDriver driver, By webElementXPATH) {
         // explicit wait - to wait for the compose button to be click-able
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
@@ -69,7 +68,6 @@ public class PageBase {
             String os = System.getProperty("os.name").toLowerCase();
             if (os.contains("win")) {
                 Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe /T");
-//                Runtime.getRuntime().exec("taskkill /F /IM chrome.exe /T");
             } else if (os.contains("mac") || os.contains("nix") || os.contains("nux")) {
                 Runtime.getRuntime().exec("pkill -f chromedriver");
                 Runtime.getRuntime().exec("pkill -f chrome");

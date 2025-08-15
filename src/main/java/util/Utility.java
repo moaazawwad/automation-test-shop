@@ -324,7 +324,7 @@ public static ArrayList<Integer> generateUniqueRandomNumbers(int max, int count)
         String lower = "abcdefghijklmnopqrstuvwxyz";
         String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String digits = "0123456789";
-        String symbols = "!#*%";
+        String symbols = "#*";
 
         String allCharacters = lower + upper + digits + symbols;
         StringBuilder password = new StringBuilder();

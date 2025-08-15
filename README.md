@@ -1,7 +1,7 @@
 # 🛍️ Test Shop
 
 > A lightweight eCommerce automation testing project based on a local React application.  
-> 🔗 GitHub Repo: [https://github.com/moaazawwad/test-shop](https://github.com/moaazawwad/test-shop)
+> 🔗 GitHub Repo: (https://github.com/moaazawwad/test-shop)
 
 ---
 
@@ -11,29 +11,26 @@
 - [Key Features](#key-features)
 - [Setup](#setup)
 - [Local Testing Execution Example](#local-testing-execution-example)
-- [Sample Test Scenarios](#sample-test-scenarios)
 - [Contribute](#contribute)
 - [License](#license)
 
 ---
-
 ## 🔍 Overview
 
-**Test Shop** is a Selenium-TestNG automation framework that verifies the critical functionalities of a local React-based eCommerce platform. It covers real user flows including sign-up, login, product browsing, wishlist, cart, checkout, and currency change.
+**Test Shop** is a Selenium + TestNG automation framework for a local **React** e-commerce app.  
+It focuses on realistic user journeys across the store.
 
 ---
 
-##  Key Features
+## What’s Tested
 
-- ✅ **End-to-End user journey**: from dynamic user registration to successful order confirmation and payment validation  
-- 🔐 Automated login and logout verification  
-- 🔎 Product search testing (e.g., "Nike")  
-- ❤️ Wishlist: add and verify random products  
-- 🛒 Full cart workflow: add items, remove, and perform checkout  
-- 💳 Payment flow simulation with Stripe test card  
-- 💱 Currency switch: USD ↔ EUR with symbol validation  
-
----
+| # | Scenario | Description |
+|---|----------|-------------|
+| 1 | 🆕 User Registration & Login | Dynamic signup, logout, and login using same data |
+| 2 | 🔎 Product Search | Search for “Nike” and assert correct results |
+| 3 | ❤️ Wishlist | Add random items and verify on wishlist page |
+| 4 | 🛒 Cart & Checkout | Add items to cart, remove some, fill shipping & payment info (Stripe test card) |
+| 5 | 💱 Currency Switch | Switch to EUR and validate currency symbols updated |
 
 ##  Setup
 
@@ -55,20 +52,6 @@ It should be available at: `http://localhost:5173/`
 cd test-shop
 mvn clean verify
 ```
-
-
-
-##  Sample Test Scenarios
-
-| # | Scenario | Description |
-|---|----------|-------------|
-| 1 | **User Registration & Login** | Dynamic signup, logout, and login using same data |
-| 2 | **Product Search** | Search for “Nike” and assert correct results |
-| 3 | **Wishlist** | Add random items and verify on wishlist page |
-| 4 | **Cart & Checkout** | Add items to cart, remove some, fill shipping & payment info |
-| 5 | **Currency Switch** | Switch to EUR and validate currency symbols updated |
-
----
 
 ##  Contribute
 

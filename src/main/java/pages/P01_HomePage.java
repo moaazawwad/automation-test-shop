@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 public class P01_HomePage extends PageBase {
-    static public boolean isUserDisplayed = false;
 
     public P01_HomePage(WebDriver driver) {
         super(driver);
@@ -24,10 +23,6 @@ public class P01_HomePage extends PageBase {
     private final By logoutButton = By.xpath("//button[@data-testid='logout-button']");
     private final By searchInput = By.xpath("//input[@data-testid='search-input']");
     private final By searchResult = By.xpath("//div[@class='font-medium']");
-
-    private final By minPrice = By.xpath("//input[@data-testid='min-price-input']");
-    private final By maxPrice = By.xpath("//input[@data-testid='max-price-input']");
-    private final By prices = By.xpath("//p[@class='text-blue-600 font-bold mb-4']");
     private final By wishlistButton = By.xpath("//a[@data-testid=\"wishlist-link\"]");
     private final By cartButton = By.xpath("//a[@data-testid=\"cart-link\"]");
     private final By currency = By.xpath("//select[@data-testid=\"currency-selector\"]");
@@ -97,53 +92,6 @@ public class P01_HomePage extends PageBase {
         return this;
     }
 
-//    public P01_HomePage enterDetailedSearch(String value) {
-//        WebElement input = shortWait(driver).until(
-//                ExpectedConditions.visibilityOfElementLocated(detailedSearch)
-//        );
-//        input.clear();
-//        input.sendKeys(value);
-//        return this;
-//    }
-
-    public P01_HomePage enterMinPrice(String value) {
-        WebElement input = shortWait(driver).until(
-                ExpectedConditions.visibilityOfElementLocated(minPrice)
-        );
-        input.clear();
-        input.sendKeys(value);
-        return this;
-    }
-
-    public P01_HomePage enterMaxPrice(String value) {
-        WebElement input = shortWait(driver).until(
-                ExpectedConditions.visibilityOfElementLocated(maxPrice)
-        );
-        input.clear();
-        input.sendKeys(value);
-        return this;
-    }
-
-    public String getPriceText() {
-        WebElement priceElement = shortWait(driver).until(
-                ExpectedConditions.visibilityOfElementLocated(prices)
-        );
-        return priceElement.getText();
-    }
-    
-    public boolean isSearchResultCorrect(String expectedText) {
-        List<WebElement> resultElements = shortWait(driver).until(
-                ExpectedConditions.visibilityOfAllElementsLocatedBy(searchResult)
-        );
-
-        for (WebElement element : resultElements) {
-            String actualText = element.getText().trim();
-            if (actualText.equalsIgnoreCase(expectedText.trim())) {
-                return true;
-            }
-        }
-        return false;
-    }
 
 
     public List<String> clickRandomWishlistItemsAndGetTestIds(int howManyToClick) {

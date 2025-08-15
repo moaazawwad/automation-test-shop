@@ -6,6 +6,7 @@ target/
 allure-results/
 target/allure-results/
 recordings/
+src/test/resources/Screenshots/
 
 # IDE
 .idea/

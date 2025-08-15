@@ -40,16 +40,4 @@ public class TC02_LoginPage extends TestBase{
 
 
   }
-
-//  @Test(priority = 1, description = "Click on Sign Up button inside Sign In page and verify URL contains 'signup'")
-//  public void clickSignUpButtonAndVerifyUrl() {
-//    new P02_LoginPage(getDriver())
-//            .clickOnSignUp();
-//
-//    String currentUrl = getDriver().getCurrentUrl();
-//    Assert.assertTrue(currentUrl.contains("signup"), "❌ URL does not contain 'signup'");
-//  }
-
-
-
 }

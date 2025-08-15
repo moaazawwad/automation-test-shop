@@ -14,11 +14,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 import static drivers.DriverHolder.getDriver;
 import static drivers.DriverHolder.setDriver;
-import static pages.PageBase.quitBrowser;
 import static util.Utility.openBrowserNetworkTab;
 
 @Listeners(ChainTestListener.class)
@@ -31,7 +29,7 @@ public class TestBase {
 
     @BeforeSuite
     public void beforeSuite() throws Exception {
-        // MyScreenRecorder.startRecording("taskname-TestCases");
+         MyScreenRecorder.startRecording("test-shop-rec");
         setProjectDetails();
     }
 
@@ -49,7 +47,6 @@ public class TestBase {
 
     @BeforeTest
     public void OpenBrower(@Optional String browsername) throws AWTException, InterruptedException {
-//      Thread.sleep(500);
         setDriver(DriverFactory.getNewInstance(browsername));
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         getDriver().get(PROJECT_URL);
@@ -65,12 +62,11 @@ public class TestBase {
         } catch (IllegalStateException ignore) {
             // no driver for this thread
         } finally {
-            drivers.DriverHolder.unload(); // دي اللي كانت ناقصة
-        }
+            drivers.DriverHolder.unload();
     }
 
     @AfterSuite
     public void afterSuite() throws Exception {
-        // MyScreenRecorder.stopRecording();
+         MyScreenRecorder.stopRecording();
     }
 }
