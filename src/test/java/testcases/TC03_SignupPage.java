@@ -16,7 +16,7 @@ public class TC03_SignupPage extends TestBase {
     String lastName = generateRandomName(4);
     String company = generateRandomName(4);
     public static String email = generateRandomEmail();
-    public static String password = generateStrongPassword(12);
+    public static String password = generateStrongPassword(15);
 
     /**
      * ✅ Test: Register a new user, login with same credentials, and verify username is displayed.
